@@ -19,7 +19,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
     console.log('Connected to MongoDB server');
      db.collection('Todos').find({}).toArray()
                                            .then((docs)=>{
-                                                  console.log('Retreived Dos:');
+                                                  console.log('Retreived Docs:');
                                                   console.log(JSON.stringify(docs,undefined,4));
                                               })
                                            .catch((err)=>{
@@ -33,6 +33,12 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
                                                 console.log((err));
                                               });
 
+    //retrieve by objectID
+
+    db.collection('Todos').find({_id : new ObjectID('5884db09b8a3d9219cd1452e')}).toArray().then((docs)=>{
+                                                                                console.log('Retreive by ObjectID :')
+                                                                                console.log(JSON.stringify(docs,undefined,4));
+                                                                                       },(err)=>{console.log(err);});
 
 
    db.collection('Users').find().toArray().then((results)=>{
